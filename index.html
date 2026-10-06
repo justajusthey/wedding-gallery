@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Love Story</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #F2EDE6; /* Pearl Beads */
+    color: #5A0F18; /* Dark Ribbon Base for clean readability */
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* NAVIGATION */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(242, 237, 230, 0.92); /* Pearl Beads blend */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #B08D57; /* Metallic Gold Fern accent line */
+}
+
+.logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: #8B1C2C; /* Deep Red Rose */
+}
+
+nav a {
+    text-decoration: none;
+    color: #8B1C2C; /* Deep Red Rose */
+    margin-left: 25px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #B08D57; /* Metallic Gold Fern on hover */
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px;
+    background:
+        linear-gradient(rgba(242, 237, 230, 0.4), rgba(242, 237, 230, 0.4)), /* Pearl Tint Over Photo */
+        url("weddingbackdrop.png") /* Your new local wedding background image */
+        center/cover;
+}
+
+.hero-box {
+    background: rgba(242, 237, 230, 0.90); /* Pearl Beads translucent panel */
+    padding: 55px 45px;
+    max-width: 700px;
+    border: 2px solid #B08D57; /* Metallic Gold Fern Border */
+}
+
+.small-title {
+    letter-spacing: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #5A0F18; /* Dark Ribbon Base */
+}
+
+.hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(65px, 11vw, 120px);
+    font-weight: 400;
+    line-height: .85;
+    color: #8B1C2C; /* Deep Red Rose */
+}
+
+.date {
+    margin-top: 25px;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: #B08D57; /* Metallic Gold Fern */
+    font-weight: 600;
+}
+
+.hero-button {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 15px 30px;
+    background: #5A0F18; /* Dark Ribbon Base */
+    color: #F2EDE6; /* Pearl Beads text */
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.hero-button:hover {
+    background: #8B1C2C; /* Deep Red Rose on hover */
+}
+
+/* GENERAL */
+
+section {
+    padding: 100px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title span {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #B08D57; /* Metallic Gold Fern */
+    font-weight: 600;
+}
+
+.section-title h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 55px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: #8B1C2C; /* Deep Red Rose */
+}
+
+/* WELCOME */
+
+.welcome {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+}
+
+.welcome p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    line-height: 1.7;
+    color: #5A0F18; /* Dark Ribbon Base */
+}
+
+/* UPLOAD */
+
+.upload-section {
+    background: #D9C3A6; /* Beige Rose Box Area Background */
+}
+
+.upload-box {
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+    background: #F2EDE6; /* Pearl Beads Box Container */
+    padding: 50px;
+    border: 1px solid #B08D57; /* Metallic Gold Fern border */
+}
+
+.upload-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.upload-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    color: #8B1C2C; /* Deep Red Rose */
+}
+
+.upload-box p {
+    margin: 15px 0 25px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #5A0F18;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #B08D57; /* Metallic Gold Fern */
+    background: #F2EDE6;
+    margin-bottom: 15px;
+    font-family: inherit;
+    color: #5A0F18;
+}
+
+input[type="file"] {
+    width: 100%;
+    margin-bottom: 20px;
+    color: #5A0F18;
+}
+
+button {
+    border: none;
+    background: #5A0F18; /* Dark Ribbon Base */
+    color: #F2EDE6; /* Pearl Beads text */
+    padding: 15px 30px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #8B1C2C; /* Deep Red Rose hover style */
+}
+
+/* GALLERY */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery img,
+.gallery video {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border: 2px solid #D9C3A6; /* Beige Rose image framing */
+}
+
+.empty-gallery {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 40px;
+    color: #8B1C2C;
+    font-style: italic;
+}
+
+/* GUESTBOOK */
+
+.guestbook {
+    background: #D9C3A6; /* Beige Rose section container */
+}
+
+.message-form {
+    max-width: 600px;
+    margin: auto;
+}
+
+textarea {
+    width: 100%;
+    height: 130px;
+    padding: 15px;
+    border: 1px solid #B08D57; /* Metallic Gold Fern boundary */
+    background: #F2EDE6; /* Pearl Beads inside the text box */
+    resize: none;
+    font-family: inherit;
+    margin-bottom: 15px;
+    color: #5A0F18;
+}
+
+.messages {
+    max-width: 800px;
+    margin: 50px auto 0;
+}
+
+.message {
+    background: #F2EDE6; /* Pearl Beads message box background */
+    padding: 25px;
+    margin-bottom: 15px;
+    border-left: 4px solid #8B1C2C; /* Deep Red Rose tag accent */
+}
+
+.message strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    color: #8B1C2C; /* Deep Red Rose */
+}
+
+.message p {
+    margin-top: 8px;
+    line-height: 1.6;
+    color: #5A0F18;
+}
+
+/* QR */
+
+.qr-section {
+    text-align: center;
+    background: #F2EDE6;
+}
+
+.qr-box {
+    max-width: 600px;
+    margin: auto;
+}
+
+.qr-placeholder {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed #B08D57; /* Metallic Gold Fern dashed lines */
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    color: #8B1C2C;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background: #5A0F18; /* Dark Ribbon Base */
+    color: #F2EDE6; /* Pearl Beads */
+    border-top: 3px solid #B08D57; /* Metallic Gold Fern border cap */
+}
+
+footer h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 45px;
+    font-weight: 400;
+    color: #F2EDE6;
+}
+
+footer p {
+    margin-top: 10px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #D9C3A6; /* Beige Rose subtext colors */
+}
+
+/* MOBILE */
+
+@media(max-width: 700px) {
+
+    nav {
+        padding: 15px 5%;
+    }
+
+    nav a {
+        display: none;
+    }
+
+    .hero-box {
+        padding: 40px 25px;
+    }
+
+    section {
+        padding: 75px 6%;
+    }
+
+    .section-title h2 {
+        font-size: 42px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery img,
+    .gallery video {
+        height: 220px;
+    }
+
+    .upload-box {
+        padding: 30px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="logo">Our Wedding</div>
+
+    <div>
+        <a href="#home">Home</a>
+        <a href="#upload">Photos</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#guestbook">Guestbook</a>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-box">
+
+        <div class="small-title">
+            Together with their families
+        </div>
+
+        <h1>
+            Ryan<br>
+            &<br>
+            Kerrisha
+        </h1>
+
+        <div class="date">
+            14 • 02 • 2027
+        </div>
+
+        <a href="#upload" class="hero-button">
+            SHARE YOUR MEMORIES
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- WELCOME -->
+
+<section>
+
+    <div class="welcome">
+
+        <div class="section-title">
+            <span>Welcome</span>
+            <h2>Our Special Day</h2>
+        </div>
+
+        <p>
+            Thank you for celebrating this beautiful moment
+            with us. We created this space so that everyone
+            can share the memories captured throughout our
+            special day.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- UPLOAD -->
+
+<section class="upload-section" id="upload">
+
+    <div class="section-title">
+        <span>Capture the moment</span>
+        <h2>Share Your Photos</h2>
+    </div>
+
+    <div class="upload-box">
+
+        <div class="upload-icon">📷</div>
+
+        <h3>Help us remember today</h3>
+
+        <p>
+            Upload the photos  you take during
+            our wedding. Your memories will become part
+            of our wedding gallery.
+        </p>
+
+        <input
+            type="text"
+            id="guestName"
+            placeholder="Your name"
+        >
+
+        <input
+            type="file"
+            id="photoInput"
+            accept="image/*,video/*"
+            multiple
+        >
+
+        <button onclick="uploadPhotos()">
+            ADD TO GALLERY
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+    <div class="section-title">
+        <span>Memories</span>
+        <h2>Our Wedding Gallery</h2>
+    </div>
+
+    <div class="gallery" id="galleryContainer">
+
+        <div class="empty-gallery">
+            Photos uploaded by guests will appear here.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GUESTBOOK -->
+
+<section class="guestbook" id="guestbook">
+
+    <div class="section-title">
+        <span>A little message</span>
+        <h2>Guestbook</h2>
+    </div>
+
+    <div class="message-form">
+
+        <input
+            type="text"
+            id="messageName"
+            placeholder="Your name"
+        >
+
+        <textarea
+            id="messageText"
+            placeholder="Leave the couple a message..."
+        ></textarea>
+
+        <button onclick="addMessage()">
+            LEAVE A MESSAGE
+        </button>
+
+    </div>
+
+    <div class="messages" id="messages"></div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>Ryan & Kerrisha</h2>
+
+    <p>
+        14 • 02 • 2026
+    </p>
+
+    <p>
+        Thank you for being part of our story.
+    </p>
+
+</footer>
+
+
+<script>
+const SUPABASE_URL = "https://nsykaqvwfthitiydkqnr.supabase.co";
+// Paste your full sb_publishable_ key inside these quotes. Never use sb_secret_ or service_role.
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_QhYNwokh8e9VkKUdvHzY5Q_yblSE1_0";
+const BUCKET = "wedding-photos";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+async function loadGallery() {
+    const gallery = document.getElementById("galleryContainer");
+    gallery.innerHTML = '<div class="empty-gallery">Loading wedding memories…</div>';
+    const { data, error } = await supabaseClient.storage.from(BUCKET)
+        .list("", { limit: 1000, sortBy: { column: "created_at", order: "desc" } });
+    if (error) {
+        gallery.innerHTML = '<div class="empty-gallery">Could not load the gallery. Please refresh and try again.</div>';
+        console.error("Gallery loading failed:", error.message);
+        return;
+    }
+    const files = (data || []).filter(file => file.name && !file.name.startsWith("."));
+    gallery.replaceChildren();
+    if (!files.length) {
+        gallery.innerHTML = '<div class="empty-gallery">Photos uploaded by guests will appear here.</div>';
+        return;
+    }
+    for (const file of files) {
+        const { data: publicFile } = supabaseClient.storage.from(BUCKET).getPublicUrl(file.name);
+        const type = file.metadata?.mimetype || "";
+        const isVideo = type.startsWith("video/") || /\.(mp4|webm|mov|m4v|ogv)$/i.test(file.name);
+        const media = document.createElement(isVideo ? "video" : "img");
+        media.src = publicFile.publicUrl;
+        media.loading = "lazy";
+        if (isVideo) media.controls = true;
+        else media.alt = "Wedding memory";
+        gallery.appendChild(media);
+    }
+}
+async function uploadPhotos() {
+    if (SUPABASE_PUBLISHABLE_KEY === "PASTE_FULL_PUBLISHABLE_KEY_HERE") {
+        alert("Add your full Supabase publishable key to the HTML first."); return;
+    }
+    const name = document.getElementById("guestName").value.trim();
+    const input = document.getElementById("photoInput");
+    const files = Array.from(input.files || []);
+    if (!name) { alert("Please enter your name."); return; }
+    if (!files.length) { alert("Please choose a photo or video."); return; }
+    const button = document.querySelector(".upload-box button");
+    button.disabled = true; button.textContent = "UPLOADING…";
+    try {
+        for (const file of files) {
+            if (!file.type.startsWith("image/") && !file.type.startsWith("video/")) continue;
+            const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+            const path = Date.now() + "-" + crypto.randomUUID() + "-" + safeName;
+            const { error } = await supabaseClient.storage.from(BUCKET).upload(path, file, {
+                contentType: file.type || undefined, upsert: false, metadata: { guestName: name }
+            });
+            if (error) throw error;
+        }
+        document.getElementById("guestName").value = ""; input.value = "";
+        await loadGallery();
+        alert("Your memories have been uploaded! ❤️");
+        document.getElementById("gallery").scrollIntoView({ behavior: "smooth" });
+    } catch (error) {
+        console.error("Supabase upload failed:", error);
+        alert("Upload failed: " + (error.message || "Check your storage policies and connection."));
+    } finally {
+        button.disabled = false; button.textContent = "ADD TO GALLERY";
+    }
+}
+function addMessage() {
+    const name = document.getElementById("messageName").value.trim();
+    const text = document.getElementById("messageText").value.trim();
+    if (!name || !text) { alert("Please enter your name and message."); return; }
+    const message = document.createElement("div"); message.className = "message";
+    const heading = document.createElement("strong"); heading.textContent = name;
+    const paragraph = document.createElement("p"); paragraph.textContent = text;
+    message.append(heading, paragraph); document.getElementById("messages").prepend(message);
+    document.getElementById("messageName").value = ""; document.getElementById("messageText").value = "";
+}
+document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+    });
+});
+document.addEventListener("DOMContentLoaded", loadGallery);
+</script>
+</body>
+</html>
